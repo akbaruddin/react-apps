@@ -22,7 +22,7 @@ yarn build
 
 Table of Content
 
-- JSX
+- [JSX](#jsx)
 - Class Based Components
 - Composition vs Inheritance
 - State Vs Props
@@ -39,3 +39,20 @@ View Code
 ```bash
 git checkout <sha1>
 ```
+
+## JSX
+
+`JSX` is a `preprocessor` step that adds `XML/HTML` syntax to JavaScript. React DOM uses camelCase property naming convention instead of HTML attribute names.
+
+- It is faster because it performs optimization while compiling code to JavaScript.
+- It is also type-safe and most of the errors can be caught during compilation.
+- It makes it easier and faster to write templates familiar with HTML.
+
+```javascript
+const Header = <h1>Hello, world</h1>
+```
+
+`React` elements are immutable. Once you create an element, you can’t change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+
+[Online](https://stackblitz.com/edit/reactbasic-lesson1)
+
