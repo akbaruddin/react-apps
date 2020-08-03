@@ -23,7 +23,7 @@ yarn build
 Table of Content
 
 - [JSX](#jsx)
-- Class Based Components
+- [Class Based Components](#class-based-components)
 - Composition vs Inheritance
 - State Vs Props
 - Events
@@ -56,3 +56,28 @@ const Header = <h1>Hello, world</h1>
 
 [Online](https://stackblitz.com/edit/reactbasic-lesson1)
 
+## Class Based Components
+
+Components: Split UI into independent, reusable pieces, and think about each piece in isolation.
+
+With `props`
+
+```javascript
+return <h1>Hello, {this.props.name}</h1>;
+```
+
+With `state`
+
+```javascript
+constructor(props) {
+    super(props)
+
+    this.state = {
+        max: 20 
+    }
+}
+
+render() {
+    return <h1>Hello, World! with {this.state.max}</h1>;
+}
+```
