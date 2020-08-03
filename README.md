@@ -1,5 +1,7 @@
 # React Folder Structure
 
+**React** + **Redux** + **TypeScript** app!
+
 ```
 +-- src
 |   +-- components/
