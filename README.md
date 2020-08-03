@@ -30,7 +30,7 @@ Table of Content
 - [Life Cycle for Class based Components](#life-cycle-for-class-based-components)
 - [Pure Function Based Components](#pure-function-based-components)
 - [Hooks in Function Based Components](#hooks-in-function-based-components)
-- Life Cycle in Functional Based Components
+- [Life Cycle in Functional Based Components](#life-cycle-in-functional-based-components)
 - PropType
 - DefaultProps
 
@@ -472,6 +472,33 @@ const App = () => {
       User Name: {user.name}
       <br />
       <input value={user.name} onChange={(e) => setUser({ name: e.target.value})} />
+    </div>
+  )
+}
+```
+
+## [Life Cycle in Functional Based Components](https://stackblitz.com/edit/reactbasic-hooklifecycle)
+
+With the useEffect Hook we can tell React that after every render, the callback passed to this `useEffect` function as its first parameter ("effect") 
+
+We've learned that useEffect lets us express different kinds of side effects after a component renders. Some effects might require cleanup so they return a function:
+
+```javascript
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  // Unlike componentDidMount or componentDidUpdate
+  useEffect(() => {
+    document.title = `${count} times`;
+  });
+
+  return (
+    <div className="App">
+      Pure Function based. {count}
+      <br />
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
     </div>
   )
 }
