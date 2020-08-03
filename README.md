@@ -28,7 +28,7 @@ Table of Content
 - [State Vs Props](#state-and-props)
 - [Events](#events)
 - [Life Cycle for Class based Components](#life-cycle-for-class-based-components)
-- Pure Function Based Components
+- [Pure Function Based Components](#pure-function-based-components)
 - Hooks in Function Based Components
 - Life Cycle in Functional Based Components
 - PropType
@@ -417,5 +417,26 @@ class LifeCycle extends Component {
       </div>
     );
   }
+}
+```
+
+## [Pure Function Based Components](https://stackblitz.com/edit/reactbasic-functional)
+
+Every component we have seen so far can be called Stateless Function Component. They just receive an input as props and return an output as JSX: `(props) => JSX`.
+
+```javascript
+// simple props pass
+const Header = (props) => <h1>{props.name}</h1>
+
+// extract method for props
+const Footer = ({ name }) => <footer>{name}</footer>
+
+const App = () => {
+  return (
+    <div>
+      Pure Function based.
+      <Header name="Functional"/>
+    </div>
+  )
 }
 ```
