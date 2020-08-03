@@ -25,7 +25,7 @@ Table of Content
 - [JSX](#jsx)
 - [Class Based Components](#class-based-components)
 - [Composition vs Inheritance](#composition-vs-inheritance)
-- State Vs Props
+- [State Vs Props](#state-and-props)
 - Events
 - Life Cycle for Class based Components
 - Pure Function Based Components
@@ -171,5 +171,93 @@ class App extends React.Component{
         )
     }
 
+}
+```
+
+## State and Props
+
+React controls the data flow in the components with state and props.
+
+### [Props](https://stackblitz.com/edit/reactbasic-prop)
+
+Send data to components in immutable form called props.
+
+- Props are read only
+- send data to components
+- every component is treated as a pure javascript function
+- props are equivalent to parameters of a pure javascript function
+- `Props` are `immutable`. Because these are developed in the concept of pure functions. In `pure functions` we cannot change the data of parameters. So, also cannot change the data of a prop in ReactJS.
+
+```javascript
+class Profile extends React.Component {
+    render() {
+        return (
+            <div>
+               <img style={{ width: '100%' }} src={this.props.logo_url} />
+               <h1>{this.props.title}</h1>
+            </div>
+        );
+    }
+}
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Profile
+                logo_url="https://books.agiliq.com/projects/django-design-patterns/en/latest/_static/logo.png"
+                title="Mobile App, Web App and API Development and More" />
+            </div>
+        );
+    }
+}
+```
+
+### [State](https://stackblitz.com/edit/reactbasic-state)
+
+State is used with React Component Classes to make them dynamic.
+
+- State is like a data store to the ReactJS component. It is mostly used to update the component when user performed some action like `clicking button`, `typing some text`, `pressing some key`, etc.
+- React.Component is the base class for all class based ReactJS components. Whenever a class inherits the class React.Component it’s constructor will automatically assigns attribute state to the class with intial value is set to null. we can change it by overriding the method constructor.
+- In many cases we need to update the state. To do that we have to use the method setState and directly assigning like `this.state = {'key': 'value'}` is strictly prohibited.
+
+```javascript
+class Profile extends Component {
+    constructor(){
+        super()
+        this.state = {
+            "admin": 'Non Admin'
+        }
+        this.changePermission = this.changePermission.bind(this);
+    }
+
+    changePermission() {
+        this.setState({ 
+            "admin": 'Admin' 
+        })
+    }
+  
+    render(){
+        return (
+            <div>
+              <img src={this.props.logo_url} height="250px"/>
+              <h1>{this.props.title} - {this.state.admin}</h1>
+              <button onClick={this.changePermission}>Admin</button>
+            </div>
+        );
+    }
+}
+
+class App extends Component {
+    render() {
+        return (
+            <div>
+                <Profile
+                    logo_url="https://books.agiliq.com/projects/django-design-patterns/en/latest/_static/logo.png"
+                    title="Mobile App, Web App and API Development and More" 
+                />
+            </div>
+        );
+    }
 }
 ```

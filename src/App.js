@@ -1,68 +1,39 @@
 import React from 'react';
 import './App.css';
 
-class Label extends React.Component{
-  constructor(props){
-    super(props);
-    this.className='plain-label';
+class Profile extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      "admin": 'Non Admin'
+    }
+    this.changePermission = this.changePermission.bind(this);
   }
+
+  changePermission() {
+    this.setState({ 
+      "admin": 'Admin' 
+    })
+  }
+
   render(){
     return (
-      <div className={this.className}>
-      {this.props.children} 
+      <div>
+        <img src={this.props.logo_url} alt="test" height="250px" />
+        <h1>{this.props.title} - {this.state.admin}</h1>
+        <button onClick={this.changePermission}>Admin</button>
       </div>
     );
-  }
-}
-
-class SuccessLabel extends Label{
-  constructor(props){
-    super(props);
-    this.className = this.className + ' success-label';
-  }
-}
-
-class ErrorLabel extends Label{
-  constructor(props){
-    super(props);
-    this.className = this.className + ' error-label';
-  }
-}
-
-class Button extends React.Component{
-  render(){
-    return (
-      <button className={this.props.className + ' plain-button'}>
-      {this.props.children}
-      </button>
-    );
-  }
-}
-
-class SuccessButton extends React.Component{
-  render(){
-    return <Button className='success-button'>{this.props.children}</Button>;
-  }
-}
-
-class ErrorButton extends React.Component{
-  render(){
-    return <Button className='error-button'>{this.props.children}</Button>;  
   }
 }
 
 function App() {
   return (
     <div className="App">
-      <Label> Plain Label </Label>
-      <SuccessLabel> Success Label </SuccessLabel>
-      <ErrorLabel> Error Label </ErrorLabel>
-
-      <div>
-        <Button> Plain Button </Button>
-        <SuccessButton> Success Button </SuccessButton>
-        <ErrorButton> Error Button </ErrorButton>
-      </div>
+      <Profile
+        logo_url="https://books.agiliq.com/projects/django-design-patterns/en/latest/_static/logo.png"
+        title="Mobile App, Web App and API Development and More" 
+      />
     </div>
   );
 }
