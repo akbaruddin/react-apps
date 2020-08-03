@@ -27,7 +27,7 @@ Table of Content
 - [Composition vs Inheritance](#composition-vs-inheritance)
 - [State Vs Props](#state-and-props)
 - [Events](#events)
-- Life Cycle for Class based Components
+- [Life Cycle for Class based Components](#life-cycle-for-class-based-components)
 - Pure Function Based Components
 - Hooks in Function Based Components
 - Life Cycle in Functional Based Components
@@ -262,6 +262,33 @@ class App extends Component {
 }
 ```
 
+### State Correctly
+
+#### Do not Modify Directly
+
+```javascript
+// Wrong
+this.state.comment = 'Hello';
+
+// instead, use setState()
+// Correct
+this.setState({comment: 'Hello'});
+```
+
+#### State with Props
+
+```javascript
+// Wrong
+this.setState({
+    counter: this.state.counter + this.props.increment
+})
+
+// Correct
+this.setState((state, props) => ({
+    counter: state.counter + props.increment
+}));
+```
+
 ## [Events](https://stackblitz.com/edit/reactbasic-event)
 
 Handling events with React elements is very similar to handling events on DOM elements
@@ -334,6 +361,59 @@ class HandleApp extends Component {
         </button>
         {/* pass an extra parameter to an event handler */}
         <button onClick={this.handleDelete.bind(this, '5')}>Delete Row</button>
+      </div>
+    );
+  }
+}
+```
+
+## Life Cycle for Class based Components
+
+- **Initialization**: This is the stage where the component is constructed with the given Props and default state. This is done in the constructor of a Component Class.
+- **Mounting**: Mounting is the stage of rendering the JSX returned by the render method itself.
+- **Updating**: Updating is the stage when the state of a component is updated and the application is repainted.
+- **Unmounting**: As the name suggests Unmounting is the final step of the component lifecycle where the component is removed from the page.
+
+```javascript
+class LifeCycle extends Component {
+  constructor() {
+    super();
+    this.state = {
+      date: new Date()
+    };
+  }
+
+  componentDidMount() {
+    console.log('did mount')
+    this.tickID = setInterval(
+      () => this.tick(),
+      1000
+    )
+  }
+  
+  componentWillMount() {
+    console.log('will mount')
+  }
+
+  componentWillUnmount() {
+    console.log('will unmount')
+    clearInterval(this.tickID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+ }
+
+  render() {
+    return (
+      <div>
+        <p>
+          Start editing to see some magic happen :)
+          <br />
+          {this.state.date.toLocaleTimeString()}
+        </p>
       </div>
     );
   }
