@@ -1,26 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './App.css';
 
 class User extends React.Component {
   render() {
     return (<div>
-      {this.props.name} {this.props.num}
+      {this.props.name}
     </div>)
   }
 }
 
-User.propTypes = {
-  name: PropTypes.string.isRequired,
-  num: PropTypes.number
+User.defaultProps = {
+  name: 'Stranger'
 }
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <p>
         Start editing to see some magic happen
-        <User name="String" num={1} />
+        <User />
       </p>
     </div>
   );

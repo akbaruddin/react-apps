@@ -32,7 +32,7 @@ Table of Content
 - [Hooks in Function Based Components](#hooks-in-function-based-components)
 - [Life Cycle in Functional Based Components](#life-cycle-in-functional-based-components)
 - [PropType](#propType)
-- DefaultProps
+- [DefaultProp](#defaultProps)
 
 View Code
 
@@ -547,6 +547,35 @@ function App() {
       <p>
         Start editing to see some magic happen
         <User name="String" num={1} />
+      </p>
+    </div>
+  );
+}
+```
+
+## DefaultProps
+
+Define default values for your props by assigning to the special `defaultProps` property.
+
+```javascript
+class User extends React.Component {
+  render() {
+    return (<div>
+      {this.props.name}
+    </div>)
+  }
+}
+
+User.defaultProps = {
+  name: 'Stranger'
+}
+
+function App() {
+  return (
+    <div className="App">
+      <p>
+        Start editing to see some magic happen
+        <User />
       </p>
     </div>
   );
