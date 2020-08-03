@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
-// simple props pass
-const Header = (props) => <h1>{props.name}</h1>
+const App = () => {
+  // Declare a new state variable, which we'll call "count"
+  // count is value holder
+  // setCount is function for update value
+  // useState extract into two part 1. variable(count) and 2. function(setCount), passing parameter is initial value
+  const [count, setCount] = useState(0);
+  const [fruit] = useState('banana');
+  const [user, setUser] = useState({ name: 'Gates' })
 
-// extract method for props
-const Footer = ({ name }) => <footer>{name}</footer>
-
-
-function App() {
   return (
     <div className="App">
-      <Header name="Functional Header"/>
-      <Footer name="Functional Footer" />
+      Pure Function based. {count}
+      <br />
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <br />
+      Fruit {fruit}
+      <br />
+      User Name: {user.name}
+      <br />
+      <input value={user.name} onChange={(e) => setUser({ name: e.target.value})} />
     </div>
-  );
+  )
 }
 
 export default App;

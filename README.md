@@ -29,7 +29,7 @@ Table of Content
 - [Events](#events)
 - [Life Cycle for Class based Components](#life-cycle-for-class-based-components)
 - [Pure Function Based Components](#pure-function-based-components)
-- Hooks in Function Based Components
+- [Hooks in Function Based Components](#hooks-in-function-based-components)
 - Life Cycle in Functional Based Components
 - PropType
 - DefaultProps
@@ -436,6 +436,42 @@ const App = () => {
     <div>
       Pure Function based.
       <Header name="Functional"/>
+    </div>
+  )
+}
+```
+
+## [Hooks in Function Based Components](https://stackblitz.com/edit/reactbasic-hooks)
+
+React Hooks made it possible to use state (and side-effects) in Function Components.
+
+- Completely opt-in. You can try Hooks in a few components without rewriting any existing code. But you don’t have to learn or use Hooks right now if you don’t want to.
+- 100% backwards-compatible. Hooks don’t contain any breaking changes.
+- Available now. Hooks are now available with the release of v16.8.0.
+
+```javascript
+const App = () => {
+  // Declare a new state variable, which we'll call "count"
+  // count is value holder
+  // setCount is function for update value
+  // useState extract into two part 1. variable(count) and 2. function(setCount), passing parameter is initial value
+  const [count, setCount] = useState(0);
+  const [fruit, setFruit] = useState('banana');
+  const [user, setUser] = useState({ name: 'Gates' })
+
+  return (
+    <div>
+      Pure Function based. {count}
+      <br />
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <br />
+      Fruit {fruit}
+      <br />
+      User Name: {user.name}
+      <br />
+      <input value={user.name} onChange={(e) => setUser({ name: e.target.value})} />
     </div>
   )
 }
