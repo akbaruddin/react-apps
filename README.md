@@ -31,7 +31,7 @@ Table of Content
 - [Pure Function Based Components](#pure-function-based-components)
 - [Hooks in Function Based Components](#hooks-in-function-based-components)
 - [Life Cycle in Functional Based Components](#life-cycle-in-functional-based-components)
-- PropType
+- [PropType](#propType)
 - DefaultProps
 
 View Code
@@ -501,5 +501,54 @@ const App = () => {
       </button>
     </div>
   )
+}
+```
+
+## [PropType](https://stackblitz.com/edit/reactbasic-proptype)
+
+JavaScript extensions like Flow or TypeScript to typecheck our whole application. But even if we don’t use those, React has some built-in typechecking abilities.
+
+**PropTypes**
+    `array`
+    `number`
+    `string`
+    `symbol`
+    `object`
+    `bool`
+    `func`
+    `node`
+    `element`
+    `instanceOf()`
+    `any`
+
+#### All With
+
+`isRequired` to make sure a warning
+
+```javascript
+import PropTypes from 'prop-types';
+
+class User extends Component {
+  render() {
+    return (<div>
+      {this.props.name} {this.props.num}
+    </div>)
+  }
+}
+
+User.propTypes = {
+  name: PropTypes.string.isRequired,
+  num: PropTypes.number
+}
+
+function App() {
+  return (
+    <div>
+      <p>
+        Start editing to see some magic happen
+        <User name="String" num={1} />
+      </p>
+    </div>
+  );
 }
 ```

@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 
-const App = () => {
-  const [count, setCount] = useState(0);
+class User extends React.Component {
+  render() {
+    return (<div>
+      {this.props.name} {this.props.num}
+    </div>)
+  }
+}
 
-  // Unlike componentDidMount or componentDidUpdate
-  useEffect(() => {
-    document.title = `${count} times`;
-  });
+User.propTypes = {
+  name: PropTypes.string.isRequired,
+  num: PropTypes.number
+}
 
+function App() {
   return (
-    <div className="App">
-      Pure Function based. {count}
-      <br />
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
+    <div>
+      <p>
+        Start editing to see some magic happen
+        <User name="String" num={1} />
+      </p>
     </div>
-  )
+  );
 }
 
 export default App;
