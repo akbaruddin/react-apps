@@ -26,7 +26,7 @@ Table of Content
 - [Class Based Components](#class-based-components)
 - [Composition vs Inheritance](#composition-vs-inheritance)
 - [State Vs Props](#state-and-props)
-- Events
+- [Events](#events)
 - Life Cycle for Class based Components
 - Pure Function Based Components
 - Hooks in Function Based Components
@@ -259,5 +259,83 @@ class App extends Component {
             </div>
         );
     }
+}
+```
+
+## [Events](https://stackblitz.com/edit/reactbasic-event)
+
+Handling events with React elements is very similar to handling events on DOM elements
+
+- React events are named using camelCase, rather than lowercase.
+- With JSX you pass a function as the event handler, rather than a string.
+
+```javascript
+class Counter extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      init: 0
+    };
+    // This binding is necessary to make `this` work in the callback
+    this.less = this.less.bind(this);
+    this.plus = this.plus.bind(this);
+  }
+
+  less() {
+    this.setState((state) => ({
+      init: state.init - 1
+    }))
+  }
+
+  plus() {
+    this.setState((state) => ({
+      init: state.init + 1
+    }))
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.less} className="button">-</button>
+        <span style={{ 'font-size': '40px', padding: '0 10px' }}>{this.state.init}</span>
+        <button onClick={this.plus} className="button">+</button>
+      </div>
+    );
+  }
+}
+```
+
+### Event with arrow function and extra args pass
+
+#### Arrow function
+
+The problem with this syntax is that a different callback is created each time the Button renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
+
+```javascript
+class HandleApp extends Component {
+  constructor() {
+    super();
+  }
+
+  handleClick(e) {
+    alert(e.type)
+    console.log(e.currentTarget.innerHTML)
+  }
+  
+  handleDelete(args) {
+    console.log(args)
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={(e) => this.handleClick(e)}>
+          Alert Click
+        </button>
+        {/* pass an extra parameter to an event handler */}
+        <button onClick={this.handleDelete.bind(this, '5')}>Delete Row</button>
+      </div>
+    );
+  }
 }
 ```

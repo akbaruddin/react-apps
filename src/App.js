@@ -1,27 +1,58 @@
 import React from 'react';
 import './App.css';
 
-class Profile extends React.Component {
-  constructor(){
-    super()
+class Counter extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      "admin": 'Non Admin'
-    }
-    this.changePermission = this.changePermission.bind(this);
+      init: 0
+    };
+    // This binding is necessary to make `this` work in the callback
+    this.less = this.less.bind(this);
+    this.plus = this.plus.bind(this);
   }
 
-  changePermission() {
-    this.setState({ 
-      "admin": 'Admin' 
-    })
+  less() {
+    this.setState((state) => ({
+      init: state.init - 1
+    }))
   }
 
-  render(){
+  plus() {
+    this.setState((state) => ({
+      init: state.init + 1
+    }))
+  }
+
+  render() {
     return (
       <div>
-        <img src={this.props.logo_url} alt="test" height="250px" />
-        <h1>{this.props.title} - {this.state.admin}</h1>
-        <button onClick={this.changePermission}>Admin</button>
+        <button onClick={this.less} className="button">-</button>
+        <span style={{ fontSize: '40px', padding: '0 10px' }}>{this.state.init}</span>
+        <button onClick={this.plus} className="button">+</button>
+      </div>
+    );
+  }
+}
+
+class HandleApp extends React.Component {
+  handleClick(e) {
+    alert(e.type)
+    console.log(e.currentTarget.innerHTML)
+  }
+  
+  handleDelete(args) {
+    console.log(args)
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={(e) => this.handleClick(e)}>
+          Alert Click
+        </button>
+        {/* pass an extra parameter to an event handler */}
+        <button onClick={this.handleDelete.bind(this, '5')}>Delete Row</button>
       </div>
     );
   }
@@ -30,10 +61,10 @@ class Profile extends React.Component {
 function App() {
   return (
     <div className="App">
-      <Profile
-        logo_url="https://books.agiliq.com/projects/django-design-patterns/en/latest/_static/logo.png"
-        title="Mobile App, Web App and API Development and More" 
-      />
+      <Counter />
+      <br />
+      <br />
+      <HandleApp />
     </div>
   );
 }
