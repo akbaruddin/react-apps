@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.label {
+  display: block;
+  margin-bottom: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.user-input {
+  padding: 20px 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.user-input input {
+  padding: 10px;
+  width: 100%;
+  display: block;
+  border: 1px solid #000;
+}
+
+.insta-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+  list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+.insta-list li  {
+  flex: 0 0 16.666666666666667%;
+  padding: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.insta-image {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid #e8e8e8;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: all .3ms;
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+  transition: all .3ms;
+}
+
+.text-center {
+  text-align: center;
 }
